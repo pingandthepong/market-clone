@@ -10,6 +10,7 @@
 :root {
   --max-width: 375px;
   --primary: #ff6f0b;
+  --primary-dark: #ff5c0b;
 }
 
 .fw-semi-bold {
