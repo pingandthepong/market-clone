@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>당근마켓</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <header>
+      <div class="status-bar">
+        <div class="status-bar__wrap">
+          <img src="./assets/signal.svg" alt="" />
+          <span class="status-bar__text">KT</span>
+          <img src="./assets/wifi.svg" alt="" />
+        </div>
+        <div class="status-bar__wrap">
+          <span class="status-bar__text fw-semi-bold" id="currentTime">
+            HH:MM
+          </span>
+        </div>
+        <div class="status-bar__wrap">
+          <img class="security" src="./assets/security.svg" alt="" />
+          <img class="alarm" src="./assets/alarm.svg" alt="" />
+          <span class="status-bar__text">50%</span>
+          <img class="battery" src="./assets/battery.svg" alt="" />
+        </div>
+      </div>
+      <div class="menu-bar">
+        <div class="menu-bar-wrap location" data-toggle="location">
+          <span class="text fw-semi-bold">대조동</span>
+          <img class="icon" src="./assets/chevron-down.svg" alt="" />
+        </div>
+        <div class="menu-bar-wrap icons">
+          <img class="search" src="./assets/search.svg" alt="" />
+          <div class="alert-wrap" data-toggle="alert">
+            <img class="alert" src="./assets/alert.svg" alt="" />
+          </div>
+          <img class="menu" src="./assets/menu.svg" alt="" />
+        </div>
+      </div>
+    </header>
+    <!-- // header -->
+
+    <!-- main -->
+    <main>
+      <nav role="tablist" class="chip-nav">
+        <div class="tab__container">
+          <div role="tab" aria-selected="true">전체</div>
+          <div role="tab" aria-selected="false">중고차</div>
+          <div role="tab" aria-selected="false">동네소식</div>
+          <div role="tab" aria-selected="false">알바</div>
+          <div role="tab" aria-selected="false">키보드/마우스</div>
+          <div role="tab" aria-selected="false">중고거래</div>
+          <div role="tab" aria-selected="false">방금 전</div>
+          <div role="tab" aria-selected="false">부동산</div>
+          <div role="tab" aria-selected="false">가까운 동네</div>
+          <div role="tab" aria-selected="false">만원당근</div>
+        </div>
+      </nav>
+      <section class="contents">
+        <div class="item-list">
+          <div class="item-list__img">
+            <img src="./assets/image.svg" alt="" />
+          </div>
+          <div class="item-list__info">
+            <h3 class="item-list__info-title">제목</h3>
+            <div class="item-list__info-meta">
+              <img src="./assets/map.svg" alt="" />
+              <p class="item-list__info-meta__text">
+                <span>0km</span>
+                &middot;
+                <span>oo동</span>
+                &middot;
+                <span>n시간 전</span>
+              </p>
+            </div>
+            <p class="item-list__info-price">0원</p>
+          </div>
+          <div class="item-list__more">
+            <img src="./assets/ellipsis-vertical.svg" alt="more info" />
+          </div>
+          <div class="item-list__favorite">
+            <img src="./assets/favorite.svg" alt="" />
+            0
+          </div>
+        </div>
+        <div class="item-list">
+          <div class="item-list__img">
+            <img src="./assets/image.svg" alt="" />
+          </div>
+          <div class="item-list__info">
+            <h3 class="item-list__info-title">제목</h3>
+            <div class="item-list__info-meta">
+              <img src="./assets/map.svg" alt="" />
+              <p class="item-list__info-meta__text">
+                <span>0km</span>
+                &middot;
+                <span>oo동</span>
+                &middot;
+                <span>n시간 전</span>
+              </p>
+            </div>
+            <p class="item-list__info-price">0원</p>
+          </div>
+          <div class="item-list__more">
+            <img src="./assets/ellipsis-vertical.svg" alt="more info" />
+          </div>
+          <div class="item-list__favorite">
+            <img src="./assets/favorite.svg" alt="" />
+            0
+          </div>
+        </div>
+        <div class="item-list">
+          <div class="item-list__img">
+            <img src="./assets/image.svg" alt="" />
+          </div>
+          <div class="item-list__info">
+            <h3 class="item-list__info-title">제목</h3>
+            <div class="item-list__info-meta">
+              <img src="./assets/map.svg" alt="" />
+              <p class="item-list__info-meta__text">
+                <span>0km</span>
+                &middot;
+                <span>oo동</span>
+                &middot;
+                <span>n시간 전</span>
+              </p>
+            </div>
+            <p class="item-list__info-price">0원</p>
+          </div>
+          <div class="item-list__more">
+            <img src="./assets/ellipsis-vertical.svg" alt="more info" />
+          </div>
+          <div class="item-list__favorite">
+            <img src="./assets/favorite.svg" alt="" />
+            0
+          </div>
+        </div>
+        <div class="item-list">
+          <div class="item-list__img">
+            <img src="./assets/image.svg" alt="" />
+          </div>
+          <div class="item-list__info">
+            <h3 class="item-list__info-title">제목</h3>
+            <div class="item-list__info-meta">
+              <img src="./assets/map.svg" alt="" />
+              <p class="item-list__info-meta__text">
+                <span>0km</span>
+                &middot;
+                <span>oo동</span>
+                &middot;
+                <span>n시간 전</span>
+              </p>
+            </div>
+            <p class="item-list__info-price">0원</p>
+          </div>
+          <div class="item-list__more">
+            <img src="./assets/ellipsis-vertical.svg" alt="more info" />
+          </div>
+          <div class="item-list__favorite">
+            <img src="./assets/favorite.svg" alt="" />
+            0
+          </div>
+        </div>
+        <div class="item-list">
+          <div class="item-list__img">
+            <img src="./assets/image.svg" alt="" />
+          </div>
+          <div class="item-list__info">
+            <h3 class="item-list__info-title">제목</h3>
+            <div class="item-list__info-meta">
+              <img src="./assets/map.svg" alt="" />
+              <p class="item-list__info-meta__text">
+                <span>0km</span>
+                &middot;
+                <span>oo동</span>
+                &middot;
+                <span>n시간 전</span>
+              </p>
+            </div>
+            <p class="item-list__info-price">0원</p>
+          </div>
+          <div class="item-list__more">
+            <img src="./assets/ellipsis-vertical.svg" alt="more info" />
+          </div>
+          <div class="item-list__favorite">
+            <img src="./assets/favorite.svg" alt="" />
+            0
+          </div>
+        </div>
+        <div class="item-list">
+          <div class="item-list__img">
+            <img src="./assets/image.svg" alt="" />
+          </div>
+          <div class="item-list__info">
+            <h3 class="item-list__info-title">제목</h3>
+            <div class="item-list__info-meta">
+              <img src="./assets/map.svg" alt="" />
+              <p class="item-list__info-meta__text">
+                <span>0km</span>
+                &middot;
+                <span>oo동</span>
+                &middot;
+                <span>n시간 전</span>
+              </p>
+            </div>
+            <p class="item-list__info-price">0원</p>
+          </div>
+          <div class="item-list__more">
+            <img src="./assets/ellipsis-vertical.svg" alt="more info" />
+          </div>
+          <div class="item-list__favorite">
+            <img src="./assets/favorite.svg" alt="" />
+            0
+          </div>
+        </div>
+        <div class="item-list">
+          <div class="item-list__img">
+            <img src="./assets/image.svg" alt="" />
+          </div>
+          <div class="item-list__info">
+            <h3 class="item-list__info-title">제목</h3>
+            <div class="item-list__info-meta">
+              <img src="./assets/map.svg" alt="" />
+              <p class="item-list__info-meta__text">
+                <span>0km</span>
+                &middot;
+                <span>oo동</span>
+                &middot;
+                <span>n시간 전</span>
+              </p>
+            </div>
+            <p class="item-list__info-price">0원</p>
+          </div>
+          <div class="item-list__more">
+            <img src="./assets/ellipsis-vertical.svg" alt="more info" />
+          </div>
+          <div class="item-list__favorite">
+            <img src="./assets/favorite.svg" alt="" />
+            0
+          </div>
+        </div>
+        <div class="item-list">
+          <div class="item-list__img">
+            <img src="./assets/image.svg" alt="" />
+          </div>
+          <div class="item-list__info">
+            <h3 class="item-list__info-title">제목</h3>
+            <div class="item-list__info-meta">
+              <img src="./assets/map.svg" alt="" />
+              <p class="item-list__info-meta__text">
+                <span>0km</span>
+                &middot;
+                <span>oo동</span>
+                &middot;
+                <span>n시간 전</span>
+              </p>
+            </div>
+            <p class="item-list__info-price">0원</p>
+          </div>
+          <div class="item-list__more">
+            <img src="./assets/ellipsis-vertical.svg" alt="more info" />
+          </div>
+          <div class="item-list__favorite">
+            <img src="./assets/favorite.svg" alt="" />
+            0
+          </div>
+        </div>
+        <div class="item-list">
+          <div class="item-list__img">
+            <img src="./assets/image.svg" alt="" />
+          </div>
+          <div class="item-list__info">
+            <h3 class="item-list__info-title">제목</h3>
+            <div class="item-list__info-meta">
+              <img src="./assets/map.svg" alt="" />
+              <p class="item-list__info-meta__text">
+                <span>0km</span>
+                &middot;
+                <span>oo동</span>
+                &middot;
+                <span>n시간 전</span>
+              </p>
+            </div>
+            <p class="item-list__info-price">0원</p>
+          </div>
+          <div class="item-list__more">
+            <img src="./assets/ellipsis-vertical.svg" alt="more info" />
+          </div>
+          <div class="item-list__favorite">
+            <img src="./assets/favorite.svg" alt="" />
+            0
+          </div>
+        </div>
+        <div class="item-list">
+          <div class="item-list__img">
+            <img src="./assets/image.svg" alt="" />
+          </div>
+          <div class="item-list__info">
+            <h3 class="item-list__info-title">제목</h3>
+            <div class="item-list__info-meta">
+              <img src="./assets/map.svg" alt="" />
+              <p class="item-list__info-meta__text">
+                <span>0km</span>
+                &middot;
+                <span>oo동</span>
+                &middot;
+                <span>n시간 전</span>
+              </p>
+            </div>
+            <p class="item-list__info-price">0원</p>
+          </div>
+          <div class="item-list__more">
+            <img src="./assets/ellipsis-vertical.svg" alt="more info" />
+          </div>
+          <div class="item-list__favorite">
+            <img src="./assets/favorite.svg" alt="" />
+            0
+          </div>
+        </div>
+      </section>
+      <button class="write-btn">
+        <img src="./assets/add.svg" alt="" />
+        글쓰기
+      </button>
+    </main>
+    <!-- // main -->
+
+    <!-- footer -->
+    <footer>
+      <div class="footer-block">
+        <div class="footer-icons on">
+          <img src="./assets/home.svg" alt="" />
+          <span class="title">홈</span>
+        </div>
+        <div class="footer-icons">
+          <img src="./assets/community.svg" alt="" />
+          <span class="title">동네생활</span>
+        </div>
+        <div class="footer-icons">
+          <img src="./assets/map.svg" alt="" />
+          <span class="title">동네지도</span>
+        </div>
+        <div class="footer-icons">
+          <img src="./assets/chatting.svg" alt="" />
+          <span class="title">채팅</span>
+        </div>
+        <div class="footer-icons">
+          <img src="./assets/my.svg" alt="" />
+          <span class="title">나의 당근</span>
+        </div>
+      </div>
+    </footer>
+    <!-- // footer -->
+
+    <div class="media-info-msg">화면 사이즈를 줄여주세요.</div>
+
+    <script src="./script/dataToggle.js"></script>
+    <script src="./script/updateTime.js"></script>
+  </body>
+</html>

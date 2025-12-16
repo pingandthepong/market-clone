@@ -1,0 +1,128 @@
+@charset "utf-8";
+
+header {
+  height: 70px;
+}
+
+/* Status Bar */
+.status-bar {
+  width: calc(100% - 20px); /* padding */
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 0 10px;
+  background-color: #fff;
+
+  & .status-bar__wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  & .status-bar__text {
+    font-size: 12px;
+  }
+
+  & img {
+    display: block;
+    height: 10px;
+
+    &.security {
+      width: 10.5px;
+      height: 9px;
+    }
+    &.alarm {
+      width: 9px;
+      height: 10px;
+    }
+    .battery {
+      width: 24px;
+      height: 12px;
+    }
+  }
+}
+/* // Status Bar */
+
+/* Menu Bar */
+.menu-bar {
+  width: calc(100% - 36px); /* padding */
+  height: 46px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 24px;
+  left: 0;
+  z-index: 100;
+  padding: 0 18px;
+  background-color: #fff;
+
+  & .menu-bar-wrap {
+    display: flex;
+    align-items: center;
+
+    &.location {
+      gap: 6px;
+
+      & .text {
+        font-size: 20px;
+      }
+      & .icon {
+        width: 12px;
+        height: 8px;
+        transition: transform 0.15s ease-out;
+
+        .location.on & {
+          transform: rotate(180deg);
+        }
+        &.turn-right {
+          transform: rotate(360deg);
+        }
+      }
+    }
+    &.icons {
+      display: flex;
+      gap: 24px;
+
+      & .search {
+        width: 22px;
+        height: 22px;
+      }
+      & .alert-wrap {
+        width: 20px;
+        height: 22px;
+        position: relative;
+
+        & .alert {
+          width: 100%;
+        }
+
+        &::before {
+          content: "";
+          display: block;
+          width: 6px;
+          height: 6px;
+          background-color: #ddd;
+          border-radius: 50%;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+
+        &.on::before {
+          background-color: var(--primary);
+        }
+      }
+      & .menu {
+        width: 20px;
+        height: 18px;
+      }
+    }
+  }
+}
+/* // Menu Bar */
