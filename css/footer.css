@@ -23,6 +23,12 @@ footer {
       flex-basis: calc(100% / 5);
       cursor: pointer;
 
+      &:hover {
+        & img {
+          animation: doong-doong 0.65s infinite;
+        }
+      }
+
       & img {
         height: 22px;
       }
@@ -37,5 +43,17 @@ footer {
         }
       }
     }
+  }
+}
+
+@keyframes doong-doong {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
