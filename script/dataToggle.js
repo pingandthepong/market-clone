@@ -1,12 +1,11 @@
 // 클릭하면 on이 붙도록 하기
 
 document.addEventListener("click", (e) => {
-  // test
-  console.log("document click 이벤트");
-
   const target = e.target.closest("[data-toggle]");
   if (!target) return;
 
+  // test
+  console.log("document click 이벤트");
   target.classList.toggle("on");
   handleToggle(target);
 });
@@ -21,7 +20,8 @@ function handleToggle(el) {
       toggleLocation(el, isOn);
       break;
     case "alert":
-      toggleAlert(el);
+      // 추후 기능 추가
+      // toggleAlert(el);
       break;
   }
 }
