@@ -1,11 +1,13 @@
 // 클릭하면 on이 붙도록 하기
 
 document.addEventListener("click", (e) => {
+  // test
+  console.log("document click 이벤트");
+
   const target = e.target.closest("[data-toggle]");
   if (!target) return;
 
   target.classList.toggle("on");
-
   handleToggle(target);
 });
 
@@ -15,29 +17,68 @@ function handleToggle(el) {
 
   switch (type) {
     case "location":
+      console.log("handleToggle 이벤트");
       toggleLocation(el, isOn);
       break;
     case "alert":
-      toggleAlert(el, isOn);
+      toggleAlert(el);
       break;
   }
 }
 
+const menubarLocation = document.querySelector(".menu-bar-wrap.location");
+const myLocation = document.querySelector(".my-location");
+const mainLocation = document.querySelector(".main-location");
+
+// 값 선택
+myLocation.addEventListener("click", (e) => {
+  // test
+  console.log("myLocation click 이벤트");
+
+  e.stopPropagation();
+
+  if (e.target.value) {
+    const prevMain = myLocation.querySelector(".main");
+    if (prevMain) prevMain.classList.remove("main");
+
+    mainLocation.textContent = e.target.value;
+    e.target.classList.add("main");
+    myLocation.close();
+  }
+});
+
+// 닫힐 때(배경 클릭 포함) 아이콘 방향 원복
+myLocation.addEventListener("close", () => {
+  // test
+  console.log("myLocation close 이벤트");
+
+  menubarLocation.classList.remove("on");
+});
+
 function toggleLocation(el, isOn) {
-  const menuLocationIcon = document.querySelector(".menu-bar .location .icon");
+  // test
+  console.log("toggleLocation 이벤트");
 
+  // 위치 계산
+  const rect = menubarLocation.getBoundingClientRect();
+  myLocation.style.top = `${rect.bottom + 8}px`;
+  myLocation.style.left = `${rect.left}px`;
+
+  // 열고 닫기
   if (isOn) {
-    // on이 붙은 상태에서 클릭하면 36deg
-    el.addEventListener("click", (e) => {
-      menuLocationIcon.classList.add("turn-right");
+    myLocation.showModal();
+  } else {
+    myLocation.close();
+  }
 
-      if (!el.classList.contains("on")) {
-        menuLocationIcon.classList.remove("turn-right");
-      }
+  // safari 대응
+  const safari = "Apple Computer, Inc.";
+  if (navigator.vendor == safari && isOn) {
+    document.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+    myLocation.addEventListener("click", () => {
+      myLocation.close();
     });
   }
-}
-function toggleAlert(el, isOn) {
-  // if (isOn) openAlertModal();
-  // else closeAlertModal();
 }

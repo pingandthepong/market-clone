@@ -10,7 +10,7 @@ main {
   scrollbar-width: none;
   margin: 12px 0 8px;
 
-  & .tab__container {
+  & .tabs {
     width: max-content;
     display: flex;
     gap: 6px;

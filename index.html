@@ -23,18 +23,28 @@
         <div class="status-bar__wrap">
           <img class="security" src="./assets/security.svg" alt="" />
           <img class="alarm" src="./assets/alarm.svg" alt="" />
-          <span class="status-bar__text">50%</span>
+          <span class="status-bar__text" id="userBattery">50%</span>
           <img class="battery" src="./assets/battery.svg" alt="" />
         </div>
       </div>
       <div class="menu-bar">
-        <div class="menu-bar-wrap location" data-toggle="location">
-          <span class="text fw-semi-bold">대조동</span>
+        <div
+          class="menu-bar-wrap location"
+          data-toggle="location"
+          role="button">
+          <span class="main-location">대조동</span>
+          <dialog class="my-location" closedby="any">
+            <form method="dialog">
+              <button value="대조동" class="text main">대조동</button>
+              <button value="을지로2가" class="text">을지로2가</button>
+              <a href="javascript:void(0)" class="text">내 동네 설정</a>
+            </form>
+          </dialog>
           <img class="icon" src="./assets/chevron-down.svg" alt="" />
         </div>
         <div class="menu-bar-wrap icons">
           <img class="search" src="./assets/search.svg" alt="" />
-          <div class="alert-wrap" data-toggle="alert">
+          <div class="alert-wrap on" data-toggle="alert">
             <img class="alert" src="./assets/alert.svg" alt="" />
           </div>
           <img class="menu" src="./assets/menu.svg" alt="" />
@@ -46,7 +56,7 @@
     <!-- main -->
     <main>
       <nav role="tablist" class="chip-nav">
-        <div class="tab__container">
+        <div class="tabs">
           <div role="tab" aria-selected="true">전체</div>
           <div role="tab" aria-selected="false">중고차</div>
           <div role="tab" aria-selected="false">동네소식</div>
@@ -357,14 +367,8 @@
 
     <div class="media-info-msg">화면 사이즈를 줄여주세요.</div>
 
+    <script src="./script/battery.js"></script>
     <script src="./script/dataToggle.js"></script>
     <script src="./script/updateTime.js"></script>
-
-    <script>
-      console.log(window.innerWidth);
-      window.addEventListener("resize", () => {
-        console.log(window.innerWidth);
-      });
-    </script>
   </body>
 </html>

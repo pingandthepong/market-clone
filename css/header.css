@@ -68,20 +68,59 @@ header {
 
     &.location {
       gap: 6px;
+      padding: 8px 0;
+      cursor: pointer;
 
-      & .text {
+      & .main-location {
+        color: #111;
         font-size: 20px;
+        font-weight: 600;
       }
+
+      & dialog.my-location {
+        width: 144px;
+        background-color: #fff;
+        border-radius: 8px;
+        border: 0;
+        margin: 0;
+
+        &::backdrop {
+          background-color: rgba(0, 0, 0, 0.65);
+        }
+
+        & form {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          & .text {
+            background: transparent;
+            border: 0;
+            padding: 12px;
+            font-size: 0.85rem;
+            color: #888;
+            text-align: left;
+            cursor: pointer;
+
+            &.main {
+              color: #111;
+              font-weight: 600;
+            }
+
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+      }
+
       & .icon {
         width: 12px;
         height: 8px;
         transition: transform 0.15s ease-out;
 
         .location.on & {
-          transform: rotate(180deg);
-        }
-        &.turn-right {
-          transform: rotate(360deg);
+          transform: rotate(-180deg);
         }
       }
     }
