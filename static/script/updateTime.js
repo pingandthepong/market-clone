@@ -1,8 +1,9 @@
 function updateTime() {
-  const currentTimeEl = document.querySelector("#currentTime");
   const HOUR = new Date().getHours();
   const MINUTE = new Date().getMinutes();
   const timeString = `${HOUR}:${MINUTE}`;
+
+  const currentTimeEl = document.querySelector("#currentTime");
   currentTimeEl.textContent = timeString;
 }
 // 로드 시 실행
