@@ -42,7 +42,7 @@ renderTime();
 // Update
 // ==============================
 function updateChat(chat) {
-  const chatWrap = document.querySelector("#chat-wrap");
+  const chatList = document.querySelector("#chat-list");
 
   // 1. .chat.me
   const chatMe = document.createElement("div");
@@ -63,7 +63,7 @@ function updateChat(chat) {
   currentTimeEl.textContent = chat.time;
 
   // 조립
-  chatWrap.appendChild(chatMe);
+  chatList.appendChild(chatMe);
   chatMe.appendChild(chatBox);
   chatMe.appendChild(currentTimeEl);
   chatBox.appendChild(chatText);
