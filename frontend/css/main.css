@@ -131,6 +131,7 @@ main {
   bottom: 66px;
   font-size: 14px;
   font-weight: 600;
+  text-decoration: none;
   color: #ffece0;
   background-color: var(--primary);
   border: 1px solid #fc7d28;
