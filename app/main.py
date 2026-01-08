@@ -19,4 +19,6 @@ def create_chat(chat: Chat):
 def read_chat():
   return chats
 
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
+# write (내 물건 팔기)
+
+app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")

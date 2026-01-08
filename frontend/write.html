@@ -6,7 +6,7 @@
     <title>당근마켓 - 글쓰기</title>
     <link rel="stylesheet" href="./css/style.css" />
   </head>
-  <body>
+  <body class="page-write">
     <!-- header -->
     <header>
       <div class="status-bar">
@@ -27,39 +27,62 @@
           <img class="battery" src="./assets/battery.svg" alt="" />
         </div>
       </div>
-      <div class="menu-bar">
-        <div
-          class="menu-bar-wrap location"
-          data-toggle="location"
-          role="button">
-          <span class="main-location">대조동</span>
-          <dialog class="my-location" closedby="any">
-            <form method="dialog">
-              <button value="대조동" class="text main">대조동</button>
-              <button value="을지로2가" class="text">을지로2가</button>
-              <a href="javascript:void(0)" class="text">내 동네 설정</a>
-            </form>
-          </dialog>
-          <img class="icon" src="./assets/chevron-down.svg" alt="" />
-        </div>
-        <div class="menu-bar-wrap icons">
-          <img class="search" src="./assets/search.svg" alt="" />
-          <div class="alert-wrap on" data-toggle="alert">
-            <img class="alert" src="./assets/alert.svg" alt="" />
-          </div>
-          <img class="menu" src="./assets/menu.svg" alt="" />
-        </div>
-      </div>
     </header>
     <!-- // header -->
 
     <!-- main -->
     <main>
-      <section class="contents"></section>
-      <button class="write-btn">
-        <img src="./assets/add.svg" alt="" />
-        글쓰기
-      </button>
+      <section class="contents">
+        <div class="header">
+          <h2 class="title">내 물건 팔기</h2>
+          <button class="close-btn">X</button>
+          <p class="save">임시 저장</p>
+        </div>
+        <form action="">
+          <!-- db column과 name값 맞추기 -->
+          <div>
+            <label for="image">이미지</label>
+            <input type="file" id="image" name="image" />
+          </div>
+          <div>
+            <label for="title">제목</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="제목을 입력해주세요."
+              required />
+          </div>
+          <div>
+            <label for="description">자세한 설명</label>
+            <textarea
+              cols="34"
+              rows="8"
+              name="description"
+              id="description"
+              placeholder="대조동에 올릴 게시글 내용을 작성해 주세요. (판매 금지 물품은 게시가 제한될 수 있어요.)
+              
+신뢰할 수 있는 거래를 위해 자세히 적어주세요. 과학기술정보통신부, 한국 인터넷진흥원과 함께 해요."></textarea>
+          </div>
+          <div>
+            <label for="price">가격</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              placeholder="₩ 가격을 입력해주세요."
+              required />
+          </div>
+          <div>
+            <label for="place">거래 정보</label>
+            <p>거래 희망 장소</p>
+            <input type="text" id="place" name="place" />
+          </div>
+          <div class="floating-btn__container">
+            <button type="submit" id="write__submit-btn">작성 완료</button>
+          </div>
+        </form>
+      </section>
     </main>
     <!-- // main -->
 

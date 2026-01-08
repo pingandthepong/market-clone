@@ -1,0 +1,64 @@
+.page-write {
+  header {
+    height: fit-content;
+  }
+
+  main {
+    margin-top: 24px; /* status-bar */
+
+    & .contents {
+      & .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 40px;
+
+        & .title {
+          order: 1;
+        }
+        & .close-btn {
+          order: 0;
+          border: 0;
+          background: transparent;
+        }
+        & .save {
+          order: 2;
+          color: #ddd;
+        }
+      }
+
+      & form {
+        padding: 8px 0;
+
+        & div {
+          margin-bottom: 24px;
+          & label {
+            display: block;
+            font-size: 0.85rem;
+            line-height: 1.5;
+          }
+        }
+
+        & .floating-btn__container {
+          padding: 8px 12px;
+          position: fixed;
+          width: 100%;
+          left: 0;
+          top: calc(100% - 51px - 48px - 16px); /* footer - btn - padding */
+          box-sizing: border-box;
+          background-color: #fff;
+
+          & #write__submit-btn {
+            width: 100%;
+            height: 48px;
+            border: 0;
+            background-color: var(--primary);
+            color: #fff;
+            border-radius: 6px;
+            font-size: 1.15rem;
+          }
+        }
+      }
+    }
+  }
+}
