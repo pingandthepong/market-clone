@@ -15,6 +15,7 @@
 
         & .title {
           order: 1;
+          user-select: none;
         }
         & .close-btn {
           order: 0;
