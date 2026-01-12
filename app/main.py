@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from typing import Annotated
 import sqlite3
 
+# SQLite3 사용
 con = sqlite3.connect("db.db", check_same_thread=False)
 cur = con.cursor()
 
@@ -24,19 +25,18 @@ def create_chat(chat: Chat):
 def read_chat():
   return chats
 
-# write (내 물건 팔기)
+# write (글쓰기)
 @app.post("/items")
 async def create_item(image: UploadFile,
-                title: Annotated[str, Form()],
-                description: Annotated[str, Form()],
-                price: Annotated[int, Form()],
-                place: Annotated[str, Form()]
-               ):
-
+                      title: Annotated[str, Form()],
+                      description: Annotated[str, Form()],
+                      price: Annotated[int, Form()],
+                      place: Annotated[str, Form()],
+                      insertAt: Annotated[int, Form()]):
   image_bytes = await image.read()
   cur.execute(f"""
-              INSERT INTO items(image, title, description, price, place)
-              VALUES ('{image_bytes.hex()}', '{title}', '{description}',{price}, '{place}')
+              INSERT INTO items(image, title, description, price, place, insertAt)
+              VALUES ('{image_bytes.hex()}', '{title}', '{description}', {price}, '{place}', {insertAt})
               """)
   con.commit()
   return "200"
