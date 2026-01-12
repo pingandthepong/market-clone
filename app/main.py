@@ -1,10 +1,11 @@
 from fastapi import FastAPI, UploadFile, Form, Response
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from fastapi.encoders import jsonable_encoder
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import Annotated
 import sqlite3
+import os
 
 # SQLite3 사용
 con = sqlite3.connect("db.db", check_same_thread=False)
@@ -23,6 +24,10 @@ cur.execute(f"""
             """)
 
 app = FastAPI()
+
+@app.get("/")
+def read_index():
+  return FileResponse(os.path.join("frontend", "index.html"))
 
 class Chat(BaseModel):
   time: str
