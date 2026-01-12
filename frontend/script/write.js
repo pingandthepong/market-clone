@@ -4,6 +4,7 @@ const handleSubmitForm = async (e) => {
   e.preventDefault();
 
   const body = new FormData(form);
+  // UTC 기준 (FormData 보낼 때)
   body.append("insertAt", new Date().getTime());
 
   try {
