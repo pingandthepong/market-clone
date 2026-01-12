@@ -1,4 +1,6 @@
 from fastapi import FastAPI, UploadFile, Form
+from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import Annotated
@@ -40,5 +42,16 @@ async def create_item(image: UploadFile,
               """)
   con.commit()
   return "200"
+
+# 메인 게시글 정보 보내주기
+@app.get("/items")
+async def read_item():
+  con.row_factory = sqlite3.Row
+  cur = con.cursor()
+  rows = cur.execute(f"""
+                    SELECT * from items;
+                    """).fetchall()
+  return JSONResponse(jsonable_encoder(dict(row) for row in rows))
+
 
 app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
