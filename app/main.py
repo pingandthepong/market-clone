@@ -5,6 +5,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import Annotated
 import sqlite3
+from sqlite3 import IntegrityError
 import os
 
 # SQLite3 사용
@@ -83,8 +84,24 @@ async def get_image(item_id):
 
 # signup
 @app.post("/signup")
-def signup(id:Annotated[str, Form()], password:Annotated[str, Form()]):
-  print(id, password)
-  return "200"
+def signup(
+           id: Annotated[str, Form()],
+           password:Annotated[str, Form()],
+           name:Annotated[str, Form()],
+           email:Annotated[str, Form()]
+           ):
+  try:
+    cur.execute(
+      """
+      INSERT INTO users(id, password, name, email)
+      VALUES (?, ?, ?, ?)
+      """,
+      (id, password, name, email)
+    )
+    con.commit()
+    return "ok"
+
+  except IntegrityError:
+    return "duplicate"
 
 app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
