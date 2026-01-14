@@ -36,8 +36,8 @@ const handleSubmit = async (e) => {
 
   // 4️⃣ 응답 처리
   if (data === "ok") {
-    info.textContent = "회원가입에 성공했습니다.";
-    info.style.color = "green";
+    alert("회원 가입에 성공했습니다.");
+    window.location.pathname = "/login.html";
   } else if (data === "duplicate") {
     info.textContent = "이미 가입된 회원입니다.";
     info.style.color = "blue";
