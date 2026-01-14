@@ -4,16 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>당근마켓</title>
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="/static/css/style.css" />
   </head>
   <body class="page-index">
     <!-- header -->
     <header>
       <div class="status-bar">
         <div class="status-bar__wrap">
-          <img src="./assets/signal.svg" alt="" />
+          <img src="/static/assets/signal.svg" alt="" />
           <span class="status-bar__text">KT</span>
-          <img src="./assets/wifi.svg" alt="" />
+          <img src="/static/assets/wifi.svg" alt="" />
         </div>
         <div class="status-bar__wrap">
           <span class="status-bar__text fw-semi-bold" id="currentTime">
@@ -21,10 +21,10 @@
           </span>
         </div>
         <div class="status-bar__wrap">
-          <img class="security" src="./assets/security.svg" alt="" />
-          <img class="alarm" src="./assets/alarm.svg" alt="" />
+          <img class="security" src="/static/assets/security.svg" alt="" />
+          <img class="alarm" src="/static/assets/alarm.svg" alt="" />
           <span class="status-bar__text" id="userBattery">50%</span>
-          <img class="battery" src="./assets/battery.svg" alt="" />
+          <img class="battery" src="/static/assets/battery.svg" alt="" />
         </div>
       </div>
       <div class="menu-bar">
@@ -40,14 +40,14 @@
               <a href="javascript:void(0)" class="text">내 동네 설정</a>
             </form>
           </dialog>
-          <img class="icon" src="./assets/chevron-down.svg" alt="" />
+          <img class="icon" src="/static/assets/chevron-down.svg" alt="" />
         </div>
         <div class="menu-bar-wrap icons">
-          <img class="search" src="./assets/search.svg" alt="" />
+          <img class="search" src="/static/assets/search.svg" alt="" />
           <div class="alert-wrap on" data-toggle="alert">
-            <img class="alert" src="./assets/alert.svg" alt="" />
+            <img class="alert" src="/static/assets/alert.svg" alt="" />
           </div>
-          <img class="menu" src="./assets/menu.svg" alt="" />
+          <img class="menu" src="/static/assets/menu.svg" alt="" />
         </div>
       </div>
     </header>
@@ -72,12 +72,12 @@
       <section class="contents">
         <!-- <div class="item-list">
           <div class="item-list__img">
-            <img src="./assets/image.svg" alt="" />
+            <img src="/static/assets/image.svg" alt="" />
           </div>
           <div class="item-list__info">
             <h3 class="item-list__info-title">제목</h3>
             <div class="item-list__info-meta">
-              <img src="./assets/map.svg" alt="" />
+              <img src="/static/assets/map.svg" alt="" />
               <p class="item-list__info-meta__text">
                 <span>0km</span>
                 &middot;
@@ -89,16 +89,16 @@
             <p class="item-list__info-price">0원</p>
           </div>
           <button class="item-list__more">
-            <img src="./assets/ellipsis-vertical.svg" alt="more info" />
+            <img src="/static/assets/ellipsis-vertical.svg" alt="more info" />
           </button>
           <button class="item-list__favorite">
-            <img src="./assets/favorite.svg" alt="" />
+            <img src="/static/assets/favorite.svg" alt="" />
             0
           </button>
         </div> -->
       </section>
-      <a href="./write.html" class="write-btn">
-        <img src="./assets/add.svg" alt="" />
+      <a href="/static/write.html" class="write-btn">
+        <img src="/static/assets/add.svg" alt="" />
         글쓰기
       </a>
     </main>
@@ -108,23 +108,23 @@
     <footer>
       <div class="footer-block">
         <div class="footer-icons on">
-          <img src="./assets/home.svg" alt="" />
+          <img src="/static/assets/home.svg" alt="" />
           <span class="title">홈</span>
         </div>
         <div class="footer-icons">
-          <img src="./assets/community.svg" alt="" />
+          <img src="/static/assets/community.svg" alt="" />
           <span class="title">동네생활</span>
         </div>
         <div class="footer-icons">
-          <img src="./assets/map.svg" alt="" />
+          <img src="/static/assets/map.svg" alt="" />
           <span class="title">동네지도</span>
         </div>
         <div class="footer-icons" id="menu-chat">
-          <img src="./assets/chatting.svg" alt="" />
+          <img src="/static/assets/chatting.svg" alt="" />
           <span class="title">채팅</span>
         </div>
         <div class="footer-icons">
-          <img src="./assets/my.svg" alt="" />
+          <img src="/static/assets/my.svg" alt="" />
           <span class="title">나의 당근</span>
         </div>
       </div>
@@ -139,7 +139,9 @@
           <div class="chat-list" id="chat-list">
             <div class="chat you">
               <div class="chat-box">
-                <img src="./assets/avatar-default.svg" alt="유저 아바타" />
+                <img
+                  src="/static/assets/avatar-default.svg"
+                  alt="유저 아바타" />
                 <span class="text">혹시 16일 화요일 오전은 어려우실까요?</span>
               </div>
               <div class="current-time">오후6:45</div>
@@ -158,7 +160,7 @@
             id="chat-input"
             required />
           <button type="submit" class="chat-submit" id="chat-submit">
-            <img src="./assets/send.svg" alt="메시지 보내기" />
+            <img src="/static/assets/send.svg" alt="메시지 보내기" />
           </button>
         </form>
       </div>
@@ -167,10 +169,10 @@
 
     <div class="media-info-msg">화면 사이즈를 줄여주세요.</div>
 
-    <script src="frontend/script/battery.js"></script>
-    <script src="frontend/script/dataToggle.js"></script>
-    <script src="frontend/script/updateTime.js"></script>
-    <script src="frontend/script/chat.js"></script>
-    <script src="frontend/script/index.js"></script>
+    <script src="/static/js/battery.js"></script>
+    <script src="/static/js/dataToggle.js"></script>
+    <script src="/static/js/updateTime.js"></script>
+    <script src="/static/js/chat.js"></script>
+    <script src="/static/js/index.js"></script>
   </body>
 </html>

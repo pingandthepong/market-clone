@@ -4,16 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>당근마켓 - 로그인</title>
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="/static/css/style.css" />
   </head>
   <body>
     <!-- header -->
     <header>
       <div class="status-bar">
         <div class="status-bar__wrap">
-          <img src="./assets/signal.svg" alt="" />
+          <img src="/static/assets/signal.svg" alt="" />
           <span class="status-bar__text">KT</span>
-          <img src="./assets/wifi.svg" alt="" />
+          <img src="/static/assets/wifi.svg" alt="" />
         </div>
         <div class="status-bar__wrap">
           <span class="status-bar__text fw-semi-bold" id="currentTime">
@@ -21,10 +21,10 @@
           </span>
         </div>
         <div class="status-bar__wrap">
-          <img class="security" src="./assets/security.svg" alt="" />
-          <img class="alarm" src="./assets/alarm.svg" alt="" />
+          <img class="security" src="/static/assets/security.svg" alt="" />
+          <img class="alarm" src="/static/assets/alarm.svg" alt="" />
           <span class="status-bar__text" id="userBattery">50%</span>
-          <img class="battery" src="./assets/battery.svg" alt="" />
+          <img class="battery" src="/static/assets/battery.svg" alt="" />
         </div>
       </div>
     </header>
@@ -36,7 +36,7 @@
         <div class="header">
           <h2 class="title">로그인</h2>
         </div>
-        <form action="/signup" method="POST" id="log-in">
+        <form action="/signup" method="POST" id="login-form">
           <div>
             <label for="id">아이디</label>
             <input type="text" id="id" name="id" required />
@@ -57,23 +57,23 @@
     <footer>
       <div class="footer-block">
         <div class="footer-icons on">
-          <img src="./assets/home.svg" alt="" />
+          <img src="/static/assets/home.svg" alt="" />
           <span class="title">홈</span>
         </div>
         <div class="footer-icons">
-          <img src="./assets/community.svg" alt="" />
+          <img src="/static/assets/community.svg" alt="" />
           <span class="title">동네생활</span>
         </div>
         <div class="footer-icons">
-          <img src="./assets/map.svg" alt="" />
+          <img src="/static/assets/map.svg" alt="" />
           <span class="title">동네지도</span>
         </div>
         <div class="footer-icons" id="menu-chat">
-          <img src="./assets/chatting.svg" alt="" />
+          <img src="/static/assets/chatting.svg" alt="" />
           <span class="title">채팅</span>
         </div>
         <div class="footer-icons">
-          <img src="./assets/my.svg" alt="" />
+          <img src="/static/assets/my.svg" alt="" />
           <span class="title">나의 당근</span>
         </div>
       </div>
@@ -82,14 +82,14 @@
 
     <div class="media-info-msg">화면 사이즈를 줄여주세요.</div>
 
-    <script src="./script/battery.js"></script>
-    <script src="./script/updateTime.js"></script>
+    <script src="/static/js/battery.js"></script>
+    <script src="/static/js/updateTime.js"></script>
     <!-- SHA256 -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.11.1/sha256.min.js"
       integrity="sha512-YVITnHZw4RIWJdL3B3qiUUjFwe2999f7+GY9p75emmKu62hze4Tr1hSG5SSDPAp1WaMMbjGOZL9YaNzO5UDpYg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"></script>
-    <script src="./script/signup.js"></script>
+    <script src="/static/js/login.js"></script>
   </body>
 </html>

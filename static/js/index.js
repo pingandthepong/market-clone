@@ -36,7 +36,7 @@ const renderData = (data) => {
     const infoMeta = document.createElement("div");
     infoMeta.className = "item-list__info-meta";
     const metaImg = document.createElement("img");
-    metaImg.src = "./assets/map.svg";
+    metaImg.src = "/static/assets/map.svg";
     const infoMetaText = document.createElement("p");
     infoMetaText.className = "item-list__info-meta__text";
     infoMetaText.textContent = `${obj.place} · ${calcTime(obj.insertAt)}`;
@@ -48,14 +48,14 @@ const renderData = (data) => {
     const more = document.createElement("button");
     more.className = "item-list__more";
     const moreIcon = document.createElement("img");
-    moreIcon.src = "./assets/ellipsis-vertical.svg";
+    moreIcon.src = "/static/assets/ellipsis-vertical.svg";
     moreIcon.alt = "more info";
 
     const favorite = document.createElement("button");
     favorite.className = "item-list__favorite";
     favorite.textContent = 0;
     const favoriteIcon = document.createElement("img");
-    favoriteIcon.src = "./assets/favorite.svg";
+    favoriteIcon.src = "/static/assets/favorite.svg";
     favoriteIcon.alt = "즐겨찾기";
 
     const mainContents = document.querySelector(
