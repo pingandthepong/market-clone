@@ -21,28 +21,13 @@ const handleSubmit = async (e) => {
     body: formData,
   });
   const data = await res.json();
-  accessToken = data.access_token;
-  window.localStorage.setItem("token", accessToken);
-  alert("로그인 되었습니다.");
-  window.location.pathname = "/static";
-
-  getBtn.addEventListener("click", async () => {
-    const res = await fetch("/items", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    const data = await res.json();
-    console.log(data);
-  });
 
   // 3️⃣ 응답 처리
   if (res.status === 200) {
-    info.textContent = "로그인되었습니다.";
-    info.style.color = "green";
-    info.appendChild(getBtn);
-    // window.location.pathname = "/static";
+    accessToken = data.access_token;
+    window.localStorage.setItem("token", accessToken);
+    alert("로그인되었습니다.");
+    window.location.pathname = "/static";
   } else if (res.status === 401) {
     info.textContent = "아이디 혹은 비밀번호가 틀렸습니다.";
     info.style.color = "blue";

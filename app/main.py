@@ -137,7 +137,8 @@ async def create_item(image: UploadFile,
                       description: Annotated[str, Form()],
                       price: Annotated[int, Form()],
                       place: Annotated[str, Form()],
-                      insertAt: Annotated[int, Form()]):
+                      insertAt: Annotated[int, Form()],
+                      user=Depends(manager)):
   image_bytes = await image.read()
   cur.execute(f"""
               INSERT INTO items(image, title, description, price, place, insertAt)

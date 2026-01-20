@@ -8,11 +8,16 @@ const handleSubmitForm = async (e) => {
   body.append("insertAt", new Date().getTime());
 
   try {
+    const accessToken = window.localStorage.getItem("token");
     const res = await fetch("/items", {
       method: "POST",
       body,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
     });
     const data = await res.json();
+
     if (data === "200") window.location.pathname = "/";
   } catch (e) {
     console.error(e);
