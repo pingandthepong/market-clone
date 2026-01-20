@@ -23,16 +23,20 @@ const handleSubmit = async (e) => {
   }
 
   // 2️⃣ 서버로 보낼 데이터 준비
-  const formData = new FormData(form);
-  const sha256Password = sha256(formData.get("password"));
-  formData.set("password", sha256Password);
+  // 클라이언트에서 해싱 시, 해시값 자체가 비밀번호가 됨
+  //    => 중간자공격/XSS 시 그대로 탈취 가능
+  //    => 서버에서 해싱
+  // const formData = new FormData(form);
+  // const sha256Password = sha256(formData.get("password"));
+  // formData.set("password", sha256Password);
 
   // 3️⃣ POST 요청
   const res = await fetch("/signup", {
     method: "POST",
-    body: formData,
+    body: new FormData(form),
   });
   const data = await res.json();
+  console.log(data);
 
   // 4️⃣ 응답 처리
   if (data === "ok") {

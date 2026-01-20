@@ -9,6 +9,8 @@ from typing import Annotated
 import sqlite3
 from sqlite3 import IntegrityError
 import os
+import hashlib
+import binascii
 
 # SQLite3 사용
 con = sqlite3.connect("db.db", check_same_thread=False)
@@ -30,6 +32,22 @@ app = FastAPI()
 
 
 # signup
+def hash_password(password: str, salt: bytes = None):
+  if salt is None:
+    salt = os.urandom(16)
+    
+  hashed = hashlib.pbkdf2_hmac(
+    "sha256",
+    password.encode(),
+    salt,
+    100_000
+  )
+  
+  return (
+    binascii.hexlify(hashed).decode(),
+    binascii.hexlify(salt).decode()
+  )
+
 @app.post("/signup")
 def signup(
            id: Annotated[str, Form()],
@@ -38,12 +56,14 @@ def signup(
            email:Annotated[str, Form()]
            ):
   try:
+    hashed_password, salt = hash_password(password)
+
     cur.execute(
       """
-      INSERT INTO users(id, password, name, email)
-      VALUES (?, ?, ?, ?)
+      INSERT INTO users(id, password, salt, name, email)
+      VALUES (?, ?, ?, ?, ?)
       """,
-      (id, password, name, email)
+      (id, hashed_password, salt, name, email)
     )
     con.commit()
     return "ok"
@@ -56,16 +76,35 @@ def signup(
 SECRET = "super-coding"
 manager = LoginManager(SECRET, "/login")
 
-# 에러포인트 !!!!!
+class User(BaseModel):
+  id: str
+  name: str
+  email: str
+  password: str
+  salt: str
+
 @manager.user_loader()
 def query_user(id: str):
     con.row_factory = sqlite3.Row
     cur = con.cursor()
-    user = cur.execute(
+    row = cur.execute(
                       "SELECT * FROM users WHERE id= ?",
                       (id,)
                       ).fetchone()
-    return user
+
+    if not row:
+      return None
+
+    return User(**dict(row))
+
+
+def verify_password(input_password, stored_hash, stored_salt):
+  new_hash, _ = hash_password(
+    input_password,
+    bytes.fromhex(stored_salt)
+  )
+  return new_hash == stored_hash
+
 
 @app.post("/login")
 def login(
@@ -76,25 +115,25 @@ def login(
 
   if not user:
     raise InvalidCredentialsException
-  elif password != user['password']:
-    raise InvalidCredentialsException
+  # 조건이 맞을 수가 없음. password = 평문 / user['password'] = 해시값
+  # elif password != user['password']:
+  #   raise InvalidCredentialsException
 
-  # 에러 포인트!!!!!
-  # access_token = manager.create_access_token(data={
-  #   "sub": {
-  #     "id": user['id'],
-  #     "name": user['name'],
-  #     "email": user['email'],
-  #   }
-  # })
+  if not verify_password(password, user.password, user.salt):
+    raise InvalidCredentialsException
+  
+  print("LOGIN ID:", id)
+  print("USER:", user)
+  print("PASSWORD MATCH:", verify_password(password, user.password, user.salt))
+
+
   access_token = manager.create_access_token(
     data={
-      "sub": user["id"],
-      "name": user["name"],
-      "email": user["email"],
-      "role": "user"
+      "sub": user.id,
+      "name": user.name,
+      "email": user.email,
     }
-)
+  )
 
   return {"access_token": access_token}
 
@@ -164,5 +203,6 @@ def create_chat(chat: Chat):
 @app.get("/chat")
 def read_chat():
   return chats
+
 
 app.mount("/static", StaticFiles(directory="static", html=True), name="static")

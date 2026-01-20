@@ -11,14 +11,17 @@ const handleSubmit = async (e) => {
   getBtn.textContent = "상품 가져오기";
 
   // 1️⃣ 서버로 보낼 데이터 준비
-  const formData = new FormData(form);
-  const sha256Password = sha256(formData.get("password"));
-  formData.set("password", sha256Password);
+  // 클라이언트에서 해싱 시, 해시값 자체가 비밀번호가 됨
+  //    => 중간자공격/XSS 시 그대로 탈취 가능
+  //    => 서버에서 해싱
+  // const formData = new FormData(form);
+  // const sha256Password = sha256(formData.get("password"));
+  // formData.set("password", sha256Password);
 
   // 2️⃣ POST 요청
   const res = await fetch("/login", {
     method: "POST",
-    body: formData,
+    body: new FormData(form),
   });
   const data = await res.json();
 
@@ -27,7 +30,7 @@ const handleSubmit = async (e) => {
     accessToken = data.access_token;
     window.localStorage.setItem("token", accessToken);
     alert("로그인되었습니다.");
-    window.location.pathname = "/static";
+    // window.location.pathname = "/static";
   } else if (res.status === 401) {
     info.textContent = "아이디 혹은 비밀번호가 틀렸습니다.";
     info.style.color = "blue";
