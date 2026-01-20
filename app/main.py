@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, Form, Response
+from fastapi import FastAPI, UploadFile, Form, Response, Depends
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.encoders import jsonable_encoder
 from fastapi.staticfiles import StaticFiles
@@ -29,33 +29,6 @@ cur.execute(f"""
 app = FastAPI()
 
 
-# 메인페이지
-@app.get("/")
-def read_index():
-  return FileResponse(os.path.join("static", "index.html"))
-
-# 메인 게시글 정보 보내주기
-@app.get("/items")
-async def read_item():
-  con.row_factory = sqlite3.Row
-  cur = con.cursor()
-  rows = cur.execute(f"""
-                    SELECT * from items;
-                    """).fetchall()
-  return JSONResponse(jsonable_encoder(dict(row) for row in rows))
-
-# 이미지 응답
-@app.get("/images/{item_id}")
-async def get_image(item_id):
-  cur = con.cursor()
-  # 16진법
-  image_bytes = cur.execute(f"""
-                            SELECT image from items WHERE id={item_id}
-                            """).fetchone()[0]
-  # 변환
-  return Response(content=bytes.fromhex(image_bytes), media_type="image/*")
-
-
 # signup
 @app.post("/signup")
 def signup(
@@ -78,19 +51,21 @@ def signup(
   except IntegrityError:
     return "duplicate"
 
+
 # login
 SECRET = "super-coding"
 manager = LoginManager(SECRET, "/login")
 
+# 에러포인트 !!!!!
 @manager.user_loader()
-def query_user(id):
-  con.row_factory = sqlite3.Row
-  cur = con.cursor()
-  user = cur.execute(f"""
-                     SELECT * FROM users
-                     WHERE id='{id}'
-                     """).fetchone()
-  return user
+def query_user(id: str):
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    user = cur.execute(
+                      "SELECT * FROM users WHERE id= ?",
+                      (id,)
+                      ).fetchone()
+    return user
 
 @app.post("/login")
 def login(
@@ -104,14 +79,55 @@ def login(
   elif password != user['password']:
     raise InvalidCredentialsException
 
-  # Access Token 전달
-  access_token = manager.create_access_token(data={
-    "id": user['id'],
-    "name": user['name'],
-    "email": user['email'],
-  })
+  # 에러 포인트!!!!!
+  # access_token = manager.create_access_token(data={
+  #   "sub": {
+  #     "id": user['id'],
+  #     "name": user['name'],
+  #     "email": user['email'],
+  #   }
+  # })
+  access_token = manager.create_access_token(
+    data={
+      "sub": user["id"],
+      "name": user["name"],
+      "email": user["email"],
+      "role": "user"
+    }
+)
 
   return {"access_token": access_token}
+
+
+
+# 메인페이지
+@app.get("/")
+
+def read_index():
+  return FileResponse(os.path.join("static", "index.html"))
+
+# 유저 인증 성공 시, 메인 게시글 정보 보내주기
+@app.get("/items")
+async def get_items(user=Depends(manager)):
+  con.row_factory = sqlite3.Row
+  cur = con.cursor()
+  rows = cur.execute(f"""
+                    SELECT * FROM items;
+                    """).fetchall()
+  return JSONResponse(jsonable_encoder([dict(row) for row in rows]))
+
+
+# 이미지 응답
+@app.get("/images/{item_id}")
+async def get_image(item_id):
+  cur = con.cursor()
+  # 16진법
+  image_bytes = cur.execute(f"""
+                            SELECT image from items WHERE id={item_id}
+                            """).fetchone()[0]
+  # 변환
+  return Response(content=bytes.fromhex(image_bytes), media_type="image/*")
+
 
 
 # write (글쓰기)
