@@ -1,0 +1,147 @@
+<div class="page-write">
+  <!-- header -->
+  <header>
+    <div class="status-bar">
+      <div class="status-bar__wrap">
+        <img src="/assets/signal.svg" alt="" />
+        <span class="status-bar__text">KT</span>
+        <img src="/assets/wifi.svg" alt="" />
+      </div>
+      <div class="status-bar__wrap">
+        <span class="status-bar__text fw-semi-bold" id="currentTime">
+          HH:MM
+        </span>
+      </div>
+      <div class="status-bar__wrap">
+        <img class="security" src="/assets/security.svg" alt="" />
+        <img class="alarm" src="/assets/alarm.svg" alt="" />
+        <span class="status-bar__text" id="userBattery">50%</span>
+        <img class="battery" src="/assets/battery.svg" alt="" />
+      </div>
+    </div>
+  </header>
+  <!-- // header -->
+
+  <!-- main -->
+  <main>
+    <section class="contents">
+      <div class="header">
+        <h2 class="title">내 물건 팔기</h2>
+        <a href="/" class="close-btn">X</a>
+        <button class="save">임시 저장</button>
+      </div>
+      <form action="" id="write-form">
+        <!-- db column과 name값 맞추기 -->
+        <div>
+          <label for="image">이미지</label>
+          <input type="file" id="image" name="image" />
+        </div>
+        <div>
+          <label for="title">제목</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="제목을 입력해주세요."
+            required
+          />
+        </div>
+        <div>
+          <label for="description">자세한 설명</label>
+          <textarea
+            cols="34"
+            rows="8"
+            name="description"
+            id="description"
+            placeholder="대조동에 올릴 게시글 내용을 작성해 주세요. (판매 금지 물품은 게시가 제한될 수 있어요.)
+              
+신뢰할 수 있는 거래를 위해 자세히 적어주세요. 과학기술정보통신부, 한국 인터넷진흥원과 함께 해요."
+          ></textarea>
+        </div>
+        <div>
+          <label for="price">가격</label>
+          <input
+            type="number"
+            id="price"
+            name="price"
+            placeholder="₩ 가격을 입력해주세요."
+            required
+          />
+        </div>
+        <div>
+          <label for="place">거래 정보</label>
+          <p>거래 희망 장소</p>
+          <input type="text" id="place" name="place" />
+        </div>
+        <div class="floating-btn__container">
+          <button type="submit" id="write__submit-btn">작성 완료</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <!-- // main -->
+
+  <!-- footer -->
+  <footer>
+    <div class="footer-block">
+      <div class="footer-icons on">
+        <img src="/assets/home.svg" alt="" />
+        <span class="title">홈</span>
+      </div>
+      <div class="footer-icons">
+        <img src="/assets/community.svg" alt="" />
+        <span class="title">동네생활</span>
+      </div>
+      <div class="footer-icons">
+        <img src="/assets/map.svg" alt="" />
+        <span class="title">동네지도</span>
+      </div>
+      <div class="footer-icons" id="menu-chat">
+        <img src="/assets/chatting.svg" alt="" />
+        <span class="title">채팅</span>
+      </div>
+      <div class="footer-icons">
+        <img src="/assets/my.svg" alt="" />
+        <span class="title">나의 당근</span>
+      </div>
+    </div>
+  </footer>
+  <!-- // footer -->
+
+  <div class="floating-chat">
+    <div class="floating-chat__container">
+      <h3 class="title">채팅</h3>
+      <div class="chat-wrap" id="chat-wrap">
+        <p class="date">YYYY년 MM월 DD일</p>
+        <div class="chat-list" id="chat-list">
+          <div class="chat you">
+            <div class="chat-box">
+              <img src="/assets/avatar-default.svg" alt="유저 아바타" />
+              <span class="text">혹시 16일 화요일 오전은 어려우실까요?</span>
+            </div>
+            <div class="current-time">오후6:45</div>
+          </div>
+          <div class="chat me">
+            <div class="chat-box"><span class="text">가능합니다</span></div>
+            <div class="current-time"></div>
+          </div>
+        </div>
+      </div>
+      <form action="" class="send-wrap" id="chat-form">
+        <input
+          type="text"
+          placeholder="메시지 보내기"
+          class="chat-input"
+          id="chat-input"
+          required
+        />
+        <button type="submit" class="chat-submit" id="chat-submit">
+          <img src="/assets/send.svg" alt="메시지 보내기" />
+        </button>
+      </form>
+    </div>
+    <div class="backdrop"></div>
+  </div>
+
+  <div class="media-info-msg">화면 사이즈를 줄여주세요.</div>
+</div>
