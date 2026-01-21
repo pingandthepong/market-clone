@@ -1,26 +1,31 @@
+<script>
+  import { getDatabase, ref, push, set } from "firebase/database";
+  import { preprocess } from "svelte/compiler";
+  import Statusbar from "../components/Statusbar.svelte";
+  import Footer from "../components/Footer.svelte";
+  import MediaInfo from "../components/MediaInfo.svelte";
+  import FloatingChat from "../components/FloatingChat.svelte";
+
+  let title;
+  let description;
+  let price;
+  let place;
+
+  async function writeUserData() {
+    const db = getDatabase();
+    push(ref(db, "items/"), {
+      title,
+      description,
+      price,
+      place,
+    });
+  }
+</script>
+
 <div class="page-write">
-  <!-- header -->
   <header>
-    <div class="status-bar">
-      <div class="status-bar__wrap">
-        <img src="/assets/signal.svg" alt="" />
-        <span class="status-bar__text">KT</span>
-        <img src="/assets/wifi.svg" alt="" />
-      </div>
-      <div class="status-bar__wrap">
-        <span class="status-bar__text fw-semi-bold" id="currentTime">
-          HH:MM
-        </span>
-      </div>
-      <div class="status-bar__wrap">
-        <img class="security" src="/assets/security.svg" alt="" />
-        <img class="alarm" src="/assets/alarm.svg" alt="" />
-        <span class="status-bar__text" id="userBattery">50%</span>
-        <img class="battery" src="/assets/battery.svg" alt="" />
-      </div>
-    </div>
+    <Statusbar />
   </header>
-  <!-- // header -->
 
   <!-- main -->
   <main>
@@ -30,12 +35,16 @@
         <a href="/" class="close-btn">X</a>
         <button class="save">임시 저장</button>
       </div>
-      <form action="" id="write-form">
+      <form
+        action=""
+        id="write-form"
+        on:submit|preventDefault={writeUserData(writeUserData)}
+      >
         <!-- db column과 name값 맞추기 -->
-        <div>
+        <!-- <div>
           <label for="image">이미지</label>
           <input type="file" id="image" name="image" />
-        </div>
+        </div> -->
         <div>
           <label for="title">제목</label>
           <input
@@ -44,6 +53,7 @@
             name="title"
             placeholder="제목을 입력해주세요."
             required
+            bind:value={title}
           />
         </div>
         <div>
@@ -56,6 +66,7 @@
             placeholder="대조동에 올릴 게시글 내용을 작성해 주세요. (판매 금지 물품은 게시가 제한될 수 있어요.)
               
 신뢰할 수 있는 거래를 위해 자세히 적어주세요. 과학기술정보통신부, 한국 인터넷진흥원과 함께 해요."
+            bind:value={description}
           ></textarea>
         </div>
         <div>
@@ -66,12 +77,13 @@
             name="price"
             placeholder="₩ 가격을 입력해주세요."
             required
+            bind:value={price}
           />
         </div>
         <div>
           <label for="place">거래 정보</label>
           <p>거래 희망 장소</p>
-          <input type="text" id="place" name="place" />
+          <input type="text" id="place" name="place" bind:value={place} />
         </div>
         <div class="floating-btn__container">
           <button type="submit" id="write__submit-btn">작성 완료</button>
@@ -80,33 +92,6 @@
     </section>
   </main>
   <!-- // main -->
-
-  <!-- footer -->
-  <footer>
-    <div class="footer-block">
-      <div class="footer-icons on">
-        <img src="/assets/home.svg" alt="" />
-        <span class="title">홈</span>
-      </div>
-      <div class="footer-icons">
-        <img src="/assets/community.svg" alt="" />
-        <span class="title">동네생활</span>
-      </div>
-      <div class="footer-icons">
-        <img src="/assets/map.svg" alt="" />
-        <span class="title">동네지도</span>
-      </div>
-      <div class="footer-icons" id="menu-chat">
-        <img src="/assets/chatting.svg" alt="" />
-        <span class="title">채팅</span>
-      </div>
-      <div class="footer-icons">
-        <img src="/assets/my.svg" alt="" />
-        <span class="title">나의 당근</span>
-      </div>
-    </div>
-  </footer>
-  <!-- // footer -->
 
   <div class="floating-chat">
     <div class="floating-chat__container">
@@ -143,5 +128,8 @@
     <div class="backdrop"></div>
   </div>
 
-  <div class="media-info-msg">화면 사이즈를 줄여주세요.</div>
+  <FloatingChat />
+  <MediaInfo />
 </div>
+
+<Footer />

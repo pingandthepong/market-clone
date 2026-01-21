@@ -1,4 +1,9 @@
 <script>
+  import Statusbar from "../components/Statusbar.svelte";
+  import Footer from "../components/Footer.svelte";
+  import MediaInfo from "../components/MediaInfo.svelte";
+  import FloatingChat from "../components/FloatingChat.svelte";
+
   const hour = new Date().getHours();
   const minutes = new Date().getMinutes();
   const time = `${hour}:${minutes}`;
@@ -7,24 +12,7 @@
 <div class="page-index">
   <!-- header -->
   <header>
-    <div class="status-bar">
-      <div class="status-bar__wrap">
-        <img src="/assets/signal.svg" alt="" />
-        <span class="status-bar__text">KT</span>
-        <img src="/assets/wifi.svg" alt="" />
-      </div>
-      <div class="status-bar__wrap">
-        <span class="status-bar__text fw-semi-bold" id="currentTime">
-          {time}
-        </span>
-      </div>
-      <div class="status-bar__wrap">
-        <img class="security" src="/assets/security.svg" alt="" />
-        <img class="alarm" src="/assets/alarm.svg" alt="" />
-        <span class="status-bar__text" id="userBattery">50%</span>
-        <img class="battery" src="/assets/battery.svg" alt="" />
-      </div>
-    </div>
+    <Statusbar />
     <div class="menu-bar">
       <div class="menu-bar-wrap location" data-toggle="location" role="button">
         <span class="main-location">대조동</span>
@@ -99,67 +87,7 @@
   </main>
   <!-- // main -->
 
-  <!-- footer -->
-  <footer>
-    <div class="footer-block">
-      <div class="footer-icons on">
-        <img src="/assets/home.svg" alt="" />
-        <span class="title">홈</span>
-      </div>
-      <div class="footer-icons">
-        <img src="/assets/community.svg" alt="" />
-        <span class="title">동네생활</span>
-      </div>
-      <div class="footer-icons">
-        <img src="/assets/map.svg" alt="" />
-        <span class="title">동네지도</span>
-      </div>
-      <div class="footer-icons" id="menu-chat">
-        <img src="/assets/chatting.svg" alt="" />
-        <span class="title">채팅</span>
-      </div>
-      <div class="footer-icons">
-        <img src="/assets/my.svg" alt="" />
-        <span class="title">나의 당근</span>
-      </div>
-    </div>
-  </footer>
-  <!-- // footer -->
-
-  <div class="floating-chat">
-    <div class="floating-chat__container">
-      <h3 class="title">채팅</h3>
-      <div class="chat-wrap" id="chat-wrap">
-        <p class="date">YYYY년 MM월 DD일</p>
-        <div class="chat-list" id="chat-list">
-          <div class="chat you">
-            <div class="chat-box">
-              <img src="/assets/avatar-default.svg" alt="유저 아바타" />
-              <span class="text">혹시 16일 화요일 오전은 어려우실까요?</span>
-            </div>
-            <div class="current-time">오후6:45</div>
-          </div>
-          <div class="chat me">
-            <div class="chat-box"><span class="text">가능합니다</span></div>
-            <div class="current-time"></div>
-          </div>
-        </div>
-      </div>
-      <form action="" class="send-wrap" id="chat-form">
-        <input
-          type="text"
-          placeholder="메시지 보내기"
-          class="chat-input"
-          id="chat-input"
-          required
-        />
-        <button type="submit" class="chat-submit" id="chat-submit">
-          <img src="/assets/send.svg" alt="메시지 보내기" />
-        </button>
-      </form>
-    </div>
-    <div class="backdrop"></div>
-  </div>
-
-  <div class="media-info-msg">화면 사이즈를 줄여주세요.</div>
+  <FloatingChat />
+  <MediaInfo />
 </div>
+<Footer />
