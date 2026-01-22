@@ -51,12 +51,13 @@ main {
     & .item-list__img {
       width: 120px;
       aspect-ratio: 1 / 1;
-      background-color: #f3f3f3;
       border-radius: 12px;
       overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
+      background: #f3f3f3 url("../../public/assets/image.svg") no-repeat center;
+      background-size: 50%;
 
       & img {
         width: 100%; /* 48px */

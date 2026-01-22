@@ -18,13 +18,3 @@
 
 <!-- http://localhost:5173/#/login -->
 <Router {routes} />
-
-<main>
-  <div>Hello!!</div>
-</main>
-
-<style>
-  div {
-    color: red;
-  }
-</style>

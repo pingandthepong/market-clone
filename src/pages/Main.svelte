@@ -1,26 +1,26 @@
 <script>
-  import { getDatabase, ref, onValue } from "firebase/database";
   import Statusbar from "../components/Statusbar.svelte";
   import Footer from "../components/Footer.svelte";
   import MediaInfo from "../components/MediaInfo.svelte";
   import FloatingChat from "../components/FloatingChat.svelte";
+
   import { onMount } from "svelte";
+  import { collection, getDocs, query, orderBy } from "firebase/firestore";
+  import { db } from "../../firebase";
 
-  const hour = new Date().getHours();
-  const minutes = new Date().getMinutes();
-  const time = `${hour}:${minutes}`;
+  let items = [];
 
-  // $: 반응형 변수 => 값이 바뀌면 자동으로 렌더링 변경
-  $: items = [];
+  onMount(async () => {
+    const q = query(collection(db, "items"), orderBy("createdAt", "desc"));
 
-  const db = getDatabase();
-  const itemsRef = ref(db, "items/");
+    const snapshot = await getDocs(q);
 
-  onMount(() => {
-    onValue(itemsRef, (snapshot) => {
-      const data = snapshot.val();
-      items = Object.values(data);
-    });
+    items = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    console.log("불러온 아이템:", items);
   });
 </script>
 
@@ -72,7 +72,7 @@
         <!-- svelte migration -->
         <div class="item-list">
           <div class="item-list__img">
-            <img src="/assets/image.svg" alt="" />
+            <img src={item.imageUrl} alt="" />
           </div>
           <div class="item-list__info">
             <h3 class="item-list__info-title">{item.title}</h3>
@@ -81,12 +81,14 @@
               <p class="item-list__info-meta__text">
                 <span>0km</span>
                 &middot;
-                <span>{item.place}동</span>
-                &middot;
+                <span>{item.place ? `${item.place}동 · ` : ""}</span>
+
                 <span>n시간 전</span>
               </p>
             </div>
-            <p class="item-list__info-price">{item.price}원</p>
+            <p class="item-list__info-price">
+              {Number(item.price).toLocaleString()}원
+            </p>
           </div>
           <button class="item-list__more">
             <img src="/assets/ellipsis-vertical.svg" alt="more info" />

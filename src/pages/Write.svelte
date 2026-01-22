@@ -1,27 +1,80 @@
 <script>
   import { getDatabase, ref, push, set } from "firebase/database";
-  import { preprocess } from "svelte/compiler";
+  // import { preprocess } from "svelte/compiler";
   import Statusbar from "../components/Statusbar.svelte";
   import Footer from "../components/Footer.svelte";
   import MediaInfo from "../components/MediaInfo.svelte";
   import FloatingChat from "../components/FloatingChat.svelte";
+
+  import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+  import { db } from "../../firebase";
+  import { ceil } from "firebase/firestore/pipelines";
 
   let title;
   let description;
   let price;
   let place;
 
-  async function writeUserData() {
-    const db = getDatabase();
-    push(ref(db, "items/"), {
-      title,
-      description,
-      price,
-      place,
-    });
+  let imageUrl = "";
+  let uploading = false;
 
-    alert("글쓰기가 완료되었습니다.");
-    window.location.hash = "/";
+  // ✅ 글 작성(저장)
+  async function writeUserData() {
+    console.log("1️⃣ submit 들어옴");
+
+    if (!imageUrl) {
+      alert("이미지를 업로드해주세요.");
+      return;
+    }
+
+    console.log("2️⃣ Firestore 호출 직전");
+
+    try {
+      console.log("3️⃣ addDoc 시작");
+
+      // (1) Firestore에 URL 저장
+      await addDoc(collection(db, "items"), {
+        title,
+        description,
+        price: Number(price),
+        place,
+        imageUrl, // Cloudinary URL
+        createdAt: serverTimestamp(),
+      });
+
+      alert("글쓰기가 완료되었습니다.");
+      window.location.hash = "/";
+    } catch (e) {
+      console.error("Firestore 저장 실패: ", e);
+      alert("저장 중 오류가 발생했습니다.");
+    }
+  }
+
+  // ✅ 이미지 업로드
+  async function handleUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    uploading = true;
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "carrot_unsigned");
+
+    // (1) 파일 -> Cloudinary 업로드
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/danrlthyn/image/upload",
+      {
+        method: "POST",
+        body: formData,
+      },
+    );
+
+    const data = await res.json();
+    // (2) 업로드 완료 후 -> imageUrl에 URL 저장
+    imageUrl = data.secure_url;
+
+    uploading = false;
   }
 </script>
 
@@ -38,16 +91,24 @@
         <a href="/" class="close-btn">X</a>
         <button class="save">임시 저장</button>
       </div>
-      <form
-        action=""
-        id="write-form"
-        on:submit|preventDefault={writeUserData(writeUserData)}
-      >
+      <form on:submit|preventDefault={writeUserData} action="" id="write-form">
         <!-- db column과 name값 맞추기 -->
-        <!-- <div>
+        <div>
           <label for="image">이미지</label>
-          <input type="file" id="image" name="image" />
-        </div> -->
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            on:change={handleUpload}
+          />
+          {#if uploading}
+            <p>업로드 중...</p>
+          {/if}
+          {#if imageUrl}
+            <img src={imageUrl} alt="업로드 이미지" width="200" />
+          {/if}
+        </div>
         <div>
           <label for="title">제목</label>
           <input
@@ -89,47 +150,18 @@
           <input type="text" id="place" name="place" bind:value={place} />
         </div>
         <div class="floating-btn__container">
-          <button type="submit" id="write__submit-btn">작성 완료</button>
+          <button
+            type="submit"
+            disabled={uploading || !imageUrl}
+            id="write__submit-btn"
+          >
+            {uploading ? "이미지 업로드 중..." : "작성 완료"}
+          </button>
         </div>
       </form>
     </section>
   </main>
   <!-- // main -->
-
-  <div class="floating-chat">
-    <div class="floating-chat__container">
-      <h3 class="title">채팅</h3>
-      <div class="chat-wrap" id="chat-wrap">
-        <p class="date">YYYY년 MM월 DD일</p>
-        <div class="chat-list" id="chat-list">
-          <div class="chat you">
-            <div class="chat-box">
-              <img src="/assets/avatar-default.svg" alt="유저 아바타" />
-              <span class="text">혹시 16일 화요일 오전은 어려우실까요?</span>
-            </div>
-            <div class="current-time">오후6:45</div>
-          </div>
-          <div class="chat me">
-            <div class="chat-box"><span class="text">가능합니다</span></div>
-            <div class="current-time"></div>
-          </div>
-        </div>
-      </div>
-      <form action="" class="send-wrap" id="chat-form">
-        <input
-          type="text"
-          placeholder="메시지 보내기"
-          class="chat-input"
-          id="chat-input"
-          required
-        />
-        <button type="submit" class="chat-submit" id="chat-submit">
-          <img src="/assets/send.svg" alt="메시지 보내기" />
-        </button>
-      </form>
-    </div>
-    <div class="backdrop"></div>
-  </div>
 
   <FloatingChat />
   <MediaInfo />
