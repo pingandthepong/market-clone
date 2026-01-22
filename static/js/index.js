@@ -59,7 +59,7 @@ const renderData = (data) => {
     favoriteIcon.alt = "즐겨찾기";
 
     const mainContents = document.querySelector(
-      ".page-index  section.contents"
+      ".page-index  section.contents",
     );
     mainContents.append(itemList);
 

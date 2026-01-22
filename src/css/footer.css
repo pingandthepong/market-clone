@@ -37,7 +37,7 @@ footer {
         font-weight: 400;
         color: #9da1a8;
 
-        .footer-icons.on & {
+        &.on {
           font-weight: 600;
           color: #5f6163;
         }

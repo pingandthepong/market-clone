@@ -34,4 +34,4 @@
 <FloatingChat />
 <MediaInfo />
 
-<Footer />
+<Footer location="login" />

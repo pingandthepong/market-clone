@@ -19,6 +19,9 @@
       price,
       place,
     });
+
+    alert("글쓰기가 완료되었습니다.");
+    window.location.hash = "/";
   }
 </script>
 
@@ -132,4 +135,4 @@
   <MediaInfo />
 </div>
 
-<Footer />
+<Footer location="write" />

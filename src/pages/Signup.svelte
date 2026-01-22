@@ -46,4 +46,4 @@
 <FloatingChat />
 <MediaInfo />
 
-<Footer />
+<Footer location="signup" />
