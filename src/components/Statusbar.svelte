@@ -1,6 +1,6 @@
 <script>
-  const hour = new Date().getHours();
-  const minutes = new Date().getMinutes();
+  const hour = new Date().getHours().toString().padStart(2, "0");
+  const minutes = new Date().getMinutes().toString().padStart(2, "0");
   const time = `${hour}:${minutes}`;
 
   // Battery Level (Chrome, Edge, Opera 지원)

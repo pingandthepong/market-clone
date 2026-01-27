@@ -2,15 +2,16 @@
   export let location;
 
   const moveTo = (target) => {
+    console.log(location);
     location = target;
-    window.location.hash = target;
+    window.location.hash = `/${target}`;
   };
 </script>
 
 <footer>
   <div class="footer-block">
-    <button class="footer-icons" on:click={() => moveTo("home")}>
-      {#if location === "home"}
+    <button class="footer-icons" on:click={() => moveTo("")}>
+      {#if location === ""}
         <img src="/assets/home_on.svg" alt="" />
         <span class="title on">홈</span>
       {:else}
@@ -30,9 +31,14 @@
       <img src="/assets/chatting.svg" alt="" />
       <span class="title">채팅</span>
     </button>
-    <button class="footer-icons">
-      <img src="/assets/my.svg" alt="" />
-      <span class="title">나의 당근</span>
+    <button class="footer-icons" on:click={() => moveTo("my")}>
+      {#if location === "my"}
+        <img src="/assets/my_on.svg" alt="" />
+        <span class="title">나의 당근</span>
+      {:else}
+        <img src="/assets/my.svg" alt="" />
+        <span class="title">나의 당근</span>
+      {/if}
     </button>
   </div>
 </footer>

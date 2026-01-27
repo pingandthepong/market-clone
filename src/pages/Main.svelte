@@ -110,4 +110,4 @@
   <FloatingChat />
   <MediaInfo />
 </div>
-<Footer location="home" />
+<Footer location="" />

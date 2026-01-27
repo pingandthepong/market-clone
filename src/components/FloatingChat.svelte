@@ -1,8 +1,27 @@
+<script>
+  // ==============================
+  // # 요구사항
+  //
+  // 채팅 탭에서 채팅을 보내고(Post) 받는(get) 기능 API로 구현
+  // ==============================
+
+  // ==============================
+  // 상단 date
+  // ==============================
+  function getTodayDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const date = today.getDate();
+    return `${year}년 ${month}월 ${date}일`;
+  }
+</script>
+
 <div class="floating-chat">
   <div class="floating-chat__container">
     <h3 class="title">채팅</h3>
     <div class="chat-wrap" id="chat-wrap">
-      <p class="date">YYYY년 MM월 DD일</p>
+      <p class="date">{getTodayDate()}</p>
       <div class="chat-list" id="chat-list">
         <div class="chat you">
           <div class="chat-box">
@@ -30,5 +49,5 @@
       </button>
     </form>
   </div>
-  <div class="backdrop"></div>
+  <button type="button" aria-label="backdrop area" class="backdrop"></button>
 </div>
