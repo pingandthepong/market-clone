@@ -1,6 +1,7 @@
 <script>
   import Statusbar from "../components/Statusbar.svelte";
-  import Footer from "../components/Footer.svelte";
+  import Footer from "../components/Nav.svelte";
+  import Nav from "../components/Nav.svelte";
 </script>
 
 <header>
@@ -9,7 +10,7 @@
 <div>
   <span class="loader" aria-label="loading spinner"></span>
 </div>
-<Footer location="" />
+<Nav location="" />
 
 <style>
   div {

@@ -2,7 +2,6 @@
   export let location;
 
   const moveTo = (target) => {
-    console.log(location);
     location = target;
     window.location.hash = `/${target}`;
   };
@@ -34,7 +33,7 @@
     <button class="footer-icons" on:click={() => moveTo("my")}>
       {#if location === "my"}
         <img src="/assets/my_on.svg" alt="" />
-        <span class="title">나의 당근</span>
+        <span class="title on">나의 당근</span>
       {:else}
         <img src="/assets/my.svg" alt="" />
         <span class="title">나의 당근</span>

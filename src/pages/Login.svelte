@@ -1,5 +1,5 @@
 <script>
-  import Footer from "../components/Footer.svelte";
+  import Nav from "../components/Nav.svelte";
   import Statusbar from "../components/Statusbar.svelte";
   import MediaInfo from "../components/MediaInfo.svelte";
   import FloatingChat from "../components/FloatingChat.svelte";
@@ -88,7 +88,7 @@
 <FloatingChat />
 <MediaInfo />
 
-<Footer location="login" />
+<Nav location="login" />
 
 <style>
   h1.title {

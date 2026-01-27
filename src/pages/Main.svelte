@@ -1,6 +1,6 @@
 <script>
   import Statusbar from "../components/Statusbar.svelte";
-  import Footer from "../components/Footer.svelte";
+  import Nav from "../components/Nav.svelte";
   import MediaInfo from "../components/MediaInfo.svelte";
   import FloatingChat from "../components/FloatingChat.svelte";
 
@@ -110,4 +110,4 @@
   <FloatingChat />
   <MediaInfo />
 </div>
-<Footer location="" />
+<Nav location="" />
